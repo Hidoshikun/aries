@@ -17,9 +17,6 @@
                 <p class="post-title cover-title text-base lg:text-4xl xl:text-5xl md:text-3xl">{{ .subTitle }}</p>
                 <div class="post-meta">
                     <div class="post-meta-wrap">
-                        <img class="author-avatar"
-                             srcset="{{ .user.UserImg }}"
-                             src="{{ .user.UserImg }}" alt="">
                         <span class="post-author">{{ .article.VisitCount }} 次访问</span>
                         <time class="published" datetime="2020-10-30">
                             发布: {{ .article.CreatedAt.Format "2006-01-02" }}</time>

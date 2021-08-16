@@ -620,13 +620,8 @@ func (Article) MultiDelByIds(ids string) error {
 // SaveFromFile 从文件导入文章
 func (article Article) SaveFromFile() (err error) {
 	user := User{}
-
-	err = db.Db.First(&user).Error
-	if err != nil {
-		return
-	}
-
-	article.UserId = user.ID
+	u := user.GetUniqueUser()
+	article.UserId = u.ID
 	article.MDContent = setting.LuteEngine.MarkdownStr("", article.Content)
 
 	err = article.Create("")

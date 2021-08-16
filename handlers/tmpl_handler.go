@@ -103,7 +103,7 @@ func (t *TmplHandler) ArticleTmpl(ctx *gin.Context) {
 	_ = article.UpdateVisitCount()
 	preArticle, _ := models.Article{}.GetPrevious(article.OrderId, article.IsTop, true)
 	nextArticle, _ := models.Article{}.GetNext(article.OrderId, article.IsTop, true)
-	users, _ := models.User{}.GetAll()
+	user := models.User{}.GetUniqueUser()
 
 	ctx.HTML(http.StatusOK, "article.tmpl", gin.H{
 		"blogVars":    setting.BlogVars,
@@ -113,7 +113,7 @@ func (t *TmplHandler) ArticleTmpl(ctx *gin.Context) {
 		"article":     article,
 		"preArticle":  preArticle,
 		"nextArticle": nextArticle,
-		"user":        users[0],
+		"user":        user,
 		"subTitle":    article.Title,
 		"articleID":   article.ID,
 		"pageID":      0,
@@ -304,7 +304,7 @@ func (t *TmplHandler) LinkTmpl(ctx *gin.Context) {
 // JournalTmpl 日志页
 func (t *TmplHandler) JournalTmpl(ctx *gin.Context) {
 	journals, _ := models.Journal{}.GetAll()
-	users, _ := models.User{}.GetAll()
+	user := models.User{}.GetUniqueUser()
 
 	ctx.HTML(http.StatusOK, "journal.tmpl", gin.H{
 		"blogVars":   setting.BlogVars,
@@ -312,7 +312,7 @@ func (t *TmplHandler) JournalTmpl(ctx *gin.Context) {
 		"categories": categories,
 		"tags":       tags,
 		"journals":   journals,
-		"user":       users[0],
+		"user":       user,
 		"subTitle":   "日志",
 	})
 }

@@ -12,7 +12,7 @@ type ArticlePageForm struct {
 	Key              string `form:"key"`         // 关键词
 	State            uint   `form:"state"`       // 状态
 	CategoryId       uint   `form:"category_id"` // 分类 ID
-	utils.Pagination        // 分页结构
+	utils.Pagination                             // 分页结构
 }
 
 // ArticleAddForm 添加文章表单

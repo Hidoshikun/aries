@@ -28,17 +28,12 @@ func (a *ApiRouter) InitApiRouter(rootPath string, router *gin.Engine) {
 	authApiRouter := router.Group(rootPath)
 	{
 		authApiRouter.POST("/auth/login", authHandler.Login)
-		authApiRouter.POST("/auth/register", authHandler.Register)
 		authApiRouter.GET("/auth/captcha", authHandler.CreateCaptcha)
-		authApiRouter.POST("/auth/pwd/forget", authHandler.ForgetPwd)
-		authApiRouter.POST("/auth/pwd/reset", authHandler.ResetPwd)
 	}
 
 	userApiRouter := router.Group(rootPath)
 	{
 		userApiRouter.GET("/all_users", userHandler.GetAllUsers)
-		userApiRouter.PUT("/users", userHandler.UpdateUser)
-		userApiRouter.PUT("/users/pwd", userHandler.UpdateUserPwd)
 	}
 
 	ArticleApiRouter := router.Group(rootPath, middlewares.JWTAuth())

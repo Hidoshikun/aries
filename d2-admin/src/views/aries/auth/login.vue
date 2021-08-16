@@ -37,7 +37,7 @@
                   <el-input
                     type="text"
                     v-model="loginForm.username"
-                    placeholder="用户名/邮箱">
+                    placeholder="用户名">
                     <i slot="prepend" class="fa fa-user-circle-o"></i>
                   </el-input>
                 </el-form-item>
@@ -69,12 +69,6 @@
                   </el-button>
               </el-form>
             </el-card>
-            <p
-              class="page-login--options"
-              flex="main:justify cross:center">
-              <span @click="$router.push('/forgetPwd')"><d2-icon name="question-circle"/> 忘记密码</span>
-              <span @click="toInitSetting"><d2-icon name="cogs"/> 初始化配置</span>
-            </p>
           </div>
         </div>
         <div class="page-login--content-footer">

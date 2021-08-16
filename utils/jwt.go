@@ -15,7 +15,6 @@ type JWT struct {
 // CustomClaims 载荷
 type CustomClaims struct {
 	Username string `json:"username"`
-	UserImg  string `json:"user_img"`
 	jwt.StandardClaims
 }
 

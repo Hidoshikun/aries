@@ -142,13 +142,13 @@ func (c *CommentHandler) AddComment(ctx *gin.Context) {
 		})
 		return
 	}
-	userList, _ := models.User{}.GetAll()
+	user := models.User{}.GetUniqueUser()
 	// 若开启邮件回复功能，发送回复邮件
 	if isReplyOn, ok := commentItems["is_reply_on"]; ok && isReplyOn == "1" {
 		msg := gomail.NewMessage()
 		if comment.ParentCommentId == 0 {
 			// 设置收件人
-			msg.SetHeader("To", userList[0].Email)
+			msg.SetHeader("To", user.Email)
 			// 设置发件人
 			msg.SetAddressHeader("From", emailSetting["account"], emailSetting["account"])
 			// 主题
@@ -158,14 +158,14 @@ func (c *CommentHandler) AddComment(ctx *gin.Context) {
 				article, _ := models.Article{}.GetById(strconv.Itoa(int(comment.ArticleId)))
 				msg.SetBody("text/html", utils.GetCommentEmailHTML(
 					siteItems["site_name"], siteItems["site_url"], "评论通知",
-					userList[0].Nickname, comment.NickName, comment.Url, article.Title,
+					user.Username, comment.NickName, comment.Url, article.Title,
 					siteItems["site_url"]+"/articles/"+article.URL, comment.MDContent,
 				))
 			} else {
 				page, _ := models.Page{}.GetById(comment.PageId)
 				msg.SetBody("text/html", utils.GetCommentEmailHTML(
 					siteItems["site_name"], siteItems["site_url"], "评论通知",
-					userList[0].Nickname, comment.NickName, comment.Url, page.Title,
+					user.Username, comment.NickName, comment.Url, page.Title,
 					siteItems["site_url"]+"/custom/"+page.Url, comment.MDContent,
 				))
 			}

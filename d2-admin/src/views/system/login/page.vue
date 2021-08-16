@@ -68,12 +68,6 @@
                 </el-button>
               </el-form>
             </el-card>
-            <p
-              class="page-login--options"
-              flex="main:justify cross:center">
-              <span><d2-icon name="question-circle"/> 忘记密码</span>
-              <span @click="toRegister">注册用户</span>
-            </p>
           </div>
         </div>
         <div class="page-login--content-footer">
@@ -156,10 +150,6 @@ export default {
     ]),
     refreshTime () {
       this.time = dayjs().format('HH:mm:ss')
-    },
-    // 跳转到注册页面
-    toRegister () {
-      this.$router.push('/register')
     },
     // 加载验证码
     loadCaptcha () {

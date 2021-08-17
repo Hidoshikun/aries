@@ -72,7 +72,6 @@ import date from '@/components/aries/common/date'
 import state from '@/components/aries/comment/state'
 import tableHandler from '@/components/aries/comment/tableHandler'
 import editVditor from '@/components/aries/post/editVditor'
-import { getAllUsers } from '@/api/aries/user'
 import { getSysSettingItem } from '@api/aries/sys'
 
 export default {
@@ -179,7 +178,6 @@ export default {
         email: '',
         nick_name: '',
         url: '',
-        user_img: '',
         content: '',
         md_content: '',
         type: 0,
@@ -196,7 +194,6 @@ export default {
   },
   created () {
     this.fetchPageData()
-    this.fetchUserData()
     this.fetchSiteSetting()
   },
   methods: {
@@ -224,18 +221,6 @@ export default {
           })
         this.loading = false
       }, 300)
-    },
-    // 获取用户数据
-    fetchUserData () {
-      getAllUsers()
-        .then(res => {
-          this.replyForm.admin_user_id = res.data[0].ID
-          this.replyForm.email = res.data[0].email
-          this.replyForm.nick_name = res.data[0].nickname
-          this.replyForm.user_img = res.data[0].user_img
-        })
-        .catch(() => {
-        })
     },
     // 获取网站设置
     fetchSiteSetting () {
@@ -287,10 +272,6 @@ export default {
         if (valid) {
           if (this.replyForm.nick_name === '') {
             this.$message.error('请先设置呢称')
-            return
-          }
-          if (this.replyForm.user_img === '') {
-            this.$message.error('请先设置用户头像')
             return
           }
           this.dialogOptions.replyBtnLoading = true

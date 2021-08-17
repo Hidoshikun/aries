@@ -12,7 +12,6 @@ type ApiRouter struct {
 
 func (a *ApiRouter) InitApiRouter(rootPath string, router *gin.Engine) {
 	authHandler := api.AuthHandler{}
-	userHandler := api.UserHandler{}
 	articleHandler := api.ArticleHandler{}
 	categoryHandler := api.CategoryHandler{}
 	tagHandler := api.TagHandler{}
@@ -29,11 +28,6 @@ func (a *ApiRouter) InitApiRouter(rootPath string, router *gin.Engine) {
 	{
 		authApiRouter.POST("/auth/login", authHandler.Login)
 		authApiRouter.GET("/auth/captcha", authHandler.CreateCaptcha)
-	}
-
-	userApiRouter := router.Group(rootPath)
-	{
-		userApiRouter.GET("/all_users", userHandler.GetAllUsers)
 	}
 
 	ArticleApiRouter := router.Group(rootPath, middlewares.JWTAuth())

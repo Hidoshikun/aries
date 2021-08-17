@@ -31,14 +31,8 @@ const menu = [
     title: '外观',
     icon: 'film',
     children: [
-      { path: '/nav', title: '菜单', icon: 'location-arrow' }
-      // {
-      //   title: '主题',
-      //   icon: 'tachometer',
-      //   children: [
-      //     { path: '/theme', title: '主题', icon: 'tachometer' }
-      //   ]
-      // }
+      { path: '/nav', title: '菜单', icon: 'location-arrow' },
+      { path: '/theme', title: '主题', icon: 'tachometer' }
     ]
   },
   {
@@ -63,8 +57,8 @@ const menu = [
     icon: 'gears',
     children: [
       { path: '/setting', title: '设置', icon: 'cog' },
-      { path: '/attachment', title: '附件', icon: 'save' },
-      { path: '/doc', title: 'API 文档', icon: 'book' }
+      { path: '/attachment', title: '附件', icon: 'save' }
+      // { path: '/doc', title: 'API 文档', icon: 'book' }
       // { path: '/about', title: '关于', icon: 'paper-plane' }
     ]
   }

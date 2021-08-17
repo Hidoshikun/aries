@@ -84,7 +84,6 @@
 import dayjs from 'dayjs'
 import { mapActions } from 'vuex'
 import { createCaptcha } from '@/api/aries/auth'
-import { getAllUsers } from '@/api/aries/user'
 
 export default {
   name: 'login',
@@ -132,7 +131,6 @@ export default {
     }
   },
   created () {
-    this.checkFirst()
   },
   mounted () {
     this.timeInterval = setInterval(() => {
@@ -149,19 +147,6 @@ export default {
     ]),
     refreshTime () {
       this.time = dayjs().format('HH:mm:ss')
-    },
-    // 跳转到配置页面
-    toInitSetting () {
-      if (this.userList === 0) {
-        this.$router.push('/register')
-      } else {
-        const h = this.$createElement
-        this.$notify({
-          title: '提示',
-          message: h('i', { style: 'color: #1790fe' }, '已完成初始化配置，为了帐号安全，请先登录进入后台管理进行配置'),
-          type: 'warning'
-        })
-      }
     },
     // 加载验证码
     loadCaptcha () {
@@ -198,16 +183,6 @@ export default {
           }, 300)
         }
       })
-    },
-    // 判断是否是第一次运行，若为第一次，进入配置界面
-    checkFirst () {
-      getAllUsers()
-        .then(res => {
-          this.userList = res.data
-          if (this.userList.length === 0) {
-            this.$router.push('/register')
-          }
-        })
     }
   }
 }

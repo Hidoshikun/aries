@@ -198,36 +198,6 @@ const frameOut = [
       auth: false // 表明无需登录验证
     },
     component: _import('aries/auth/login')
-  },
-  // 注册
-  {
-    path: '/register',
-    name: 'register',
-    meta: {
-      title: '初始化配置',
-      auth: false // 表明无需登录验证
-    },
-    component: _import('aries/auth/register')
-  },
-  // 忘记密码
-  {
-    path: '/forgetPwd',
-    name: 'forgetPwd',
-    meta: {
-      title: '忘记密码',
-      auth: false // 表明无需登录验证
-    },
-    component: _import('aries/auth/forgetPwd')
-  },
-  // 重置密码
-  {
-    path: '/resetPwd',
-    name: 'resetPwd',
-    meta: {
-      title: '忘记密码',
-      auth: false // 表明无需登录验证
-    },
-    component: _import('aries/auth/resetPwd')
   }
 ]
 
